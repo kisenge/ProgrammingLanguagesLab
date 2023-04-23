@@ -1,0 +1,288 @@
+#lang slideshow
+
+
+(define input (open-input-file "Q3Input.txt"))
+
+
+(define (SUM lst)           
+  (apply + lst)
+  )
+
+   
+(define (ExpFunc z)
+  (define lst '())
+  (define (factorial n)
+    (if (= n 0)
+        1
+        (* n (factorial (- n 1)))))
+  (define (sum-k-terms k result)
+    (if (> k 50)
+        (append lst result)
+        (sum-k-terms (+ k 1) (+ result (/ (expt z k) (factorial k))))))
+  
+  (sum-k-terms 0 0))
+
+
+(define (PoissDist z)
+  (define lst '())
+  (define (factorial n)
+    (if (= n 0)
+        1
+        (* n (factorial (- n 1)))))
+  (define (sum-k-terms k result)
+    (if (> k 50)
+        (append lst result)
+        (sum-k-terms (+ k 1) (+ result (* (/ (expt z k) (factorial k)) k ) ))))
+  
+  (sum-k-terms 0 0))
+
+
+(define (Sin z)
+  (define lst '())
+  (define (factorial n)
+    (if (= n 0)
+        1
+        (* n (factorial (- n 1)))))
+  (define (sum-k-terms k result)
+    (if (> k 50)
+        (append lst result)
+        (sum-k-terms (+ k 1) (+ result (/ (* (expt -1 k) (expt z (+ 1 (* 2 k))) ) (factorial (+ 1 (* 2 k)) ))))))
+  (sum-k-terms 0 0))
+
+
+
+(define (Cos z)
+  (define lst '())
+  (define (factorial n)
+    (if (= n 0)
+        1
+        (* n (factorial (- n 1)))))
+  (define (sum-k-terms k result)
+    (if (> k 50)
+        (append lst result)
+       (sum-k-terms (+ k 1) (+ result (/ (* (expt -1 k) (expt z  (* 2 k)) ) (factorial (* 2 k) ))))))
+  (sum-k-terms 0 0))
+
+
+(define (FXP lst)
+ (map(lambda(x)
+   (ExpFunc x));lmda
+    lst
+  )
+                
+)
+
+
+
+(define (FPO lst)
+ (map(lambda(x)
+   (PoissDist x));lmda
+    lst
+  )
+                 
+)
+
+
+(define (FSN lst)
+ (map(lambda(x)
+   (Sin x));lmda
+    lst
+  )
+                 
+)
+
+
+(define (FCS lst)
+ (map(lambda(x)
+   (Cos x));lmda
+    lst
+  )
+                 
+)
+
+
+(define (funcName)
+ (read input)
+  
+  )
+
+
+(define (varNum)
+   (print(read input))
+   )
+
+
+
+(define (makeListSum mx)
+  (define lst '())
+
+  (define (loop i)
+    (when (< i mx)
+      (set! lst
+        (append lst (list(read input)))
+        )
+      (loop (add1 i))))
+  (loop 0)
+  (SUM lst)
+  
+   )
+
+(define (makeListAvg mx)
+  (define lst '())
+
+  (define (loop i)
+    (when (< i mx)
+      (set! lst
+        (append lst (list(read input)))
+        )
+      (loop (add1 i))))
+  (loop 0)
+  (/ (SUM lst)(length lst))
+  
+   )
+
+
+(define (makeListMax mx)
+  (define lst '())
+   (define (loop i)
+    (when (< i mx)
+      (set! lst
+        (append lst (list(read input)))
+        )
+      (loop (add1 i))))
+  (loop 0)
+  (apply max lst)
+ 
+   )
+
+(define (makeListMin mx)
+  (define lst '())
+   (define (loop i)
+    (when (< i mx)
+      (set! lst
+        (append lst (list(read input)))
+        )
+      (loop (add1 i))))
+  (loop 0)
+  (apply min lst)
+ 
+   )
+
+(define (makeListFXP mx)
+  (define lst '())
+   (define (loop i)
+    (when (< i mx)
+      (set! lst
+        (append lst (list(read input)))
+        )
+      (loop (add1 i))))
+  (loop 0)
+  (reverse (FXP lst))
+   )
+
+
+(define (makeListFPO mx)
+  (define lst '())
+   (define (loop i)
+    (when (< i mx)
+      (set! lst
+        (append lst (list(read input)))
+        )
+      (loop (add1 i))))
+  (loop 0)
+  (reverse (FPO lst))
+ 
+   )
+
+
+(define (makeListFSN mx)
+  (define lst '())
+   (define (loop i)
+    (when (< i mx)
+      (set! lst
+        (append lst (list(read input)))
+        )
+      (loop (add1 i))))
+  (loop 0)
+  (reverse (FSN lst))
+ 
+   )
+
+(define (makeListFCS mx)
+  (define lst '())
+   (define (loop i)
+    (when (< i mx)
+      (set! lst
+        (append lst (list(read input)))
+        )
+      (loop (add1 i))))
+  (loop 0)
+  (reverse (FCS lst))
+ 
+   )
+
+
+
+(define (bigFunc x )
+  (define (loop i)
+  (if (not(equal? (peek-string 3 0 input) "END" ))
+    (cond [(equal? (peek-string 3 0 input) "SUM" )
+           (begin
+             (read input);nxt line
+      (println(makeListSum (read input) ))
+      (loop 5)
+      )]
+      [(or (equal? (peek-string 3 0 input) "AVG" ) (equal? (peek-string 4 0 input) "\nAVG" ) )
+       (begin
+         (read input);nxt line
+       (println(makeListAvg (read input) ))
+      (loop 5)
+      )]
+      [(or (equal? (peek-string 3 0 input) "MAX" ) (equal? (peek-string 4 0 input) "\nMAX" ) )
+       (begin
+         (read input);nxt line
+       (println(makeListMax (read input) ))
+      (loop 5)
+      )]
+      [(or (equal? (peek-string 3 0 input) "MIN" ) (equal? (peek-string 4 0 input) "\nMIN" ) )
+       (begin
+         (read input);nxt line
+       (println(makeListMin (read input) ))
+      (loop 5)
+      )]
+      [(or (equal? (peek-string 3 0 input) "FXP" ) (equal? (peek-string 4 0 input) "\nFXP" ) )
+       (begin
+         (read input);nxt line
+       (println(makeListFXP (read input) ))
+      (loop 5)
+      )]
+      [(or (equal? (peek-string 3 0 input) "FPO" ) (equal? (peek-string 4 0 input) "\nFPO" ) )
+       (begin
+         (read input);nxt line
+       (println(makeListFPO (read input) ))
+      (loop 5)
+      )]
+      [(or (equal? (peek-string 3 0 input) "FSN" ) (equal? (peek-string 4 0 input) "\nFSN" ) )
+       (begin
+         (read input);nxt line
+       (println(makeListFSN (read input) ))
+      (loop 5)
+      )]
+       [(or (equal? (peek-string 3 0 input) "FCS" ) (equal? (peek-string 4 0 input) "\nFCS" ) )
+       (begin
+         (read input);nxt line
+       (println(makeListFCS (read input) ))
+      (loop 5)
+      )]
+      [else 'done])
+    
+    (print 200)))
+(loop 5)
+  
+            
+   )
+
+
+
+>(bigFunc 0)
+

@@ -1,0 +1,8 @@
+https://www.w3schools.com/js/js_classes.asp
+https://www.w3schools.com/js/js_class_inheritance.asp
+https://www.w3schools.com/js/js_if_else.asp
+https://www.scaler.com/topics/javascript/import-js-file-in-js/
+https://www.geeksforgeeks.org/how-do-you-run-javascript-script-through-the-terminal/
+https://blog.hubspot.com/website/javascript-require
+https://www.programiz.com/javascript/getter-setter#:~:text=In%20JavaScript%2C%20accessor%20properties%20are,to%20set%20the%20property%20value
+https://javascript.info/class

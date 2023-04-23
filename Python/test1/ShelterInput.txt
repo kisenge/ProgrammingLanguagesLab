@@ -1,0 +1,34 @@
+A
+Sunnyside
+Alfred
+10
+beige
+A
+Sunnyside
+Ollie
+23
+orange
+A
+Sunnyside
+spot
+25
+white
+A
+Catland
+Boots
+25
+white
+A
+Friendship Paradise
+Effie
+4
+black
+P
+Sunnyside
+A
+Friendship Paradise
+Spot
+10
+orange
+R
+X

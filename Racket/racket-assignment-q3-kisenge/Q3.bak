@@ -1,0 +1,10 @@
+#lang slideshow
+
+(define input (open-input-file "class.txt"))
+(read input) ; read first stirng in fil
+
+
+(define (sum n lst)           
+  (filter (lambda (x) (not(and(equal? (modulo x n) 0)(not(equal? x n)))      ))
+          lst)
+  )
